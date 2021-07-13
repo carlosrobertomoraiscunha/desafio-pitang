@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Página de Detalhes do Usuário</title>
+</h:head>
+<body>
+	<h1 align="center">Detalhes do Usuário</h1>
+	<div class="ui-g" style="justify-content: center;">
+		<p:growl />
+
+		<div class="ui-g-8">
+			<div class="ui-g-12" style="display: flex; justify-content: center;">
+				<h:outputLabel for="nome" value="Nome" styleClass="ui-g-4" />
+				<h:outputText value="#{detalhesUsuarioMB.usuario.nome}"
+					styleClass="ui-g-8" />
+			</div>
+
+			<div class="ui-g-12" style="display: flex; justify-content: center;">
+				<h:outputLabel for="email" value="Email" styleClass="ui-g-4" />
+				<h:outputText value="#{detalhesUsuarioMB.usuario.email}"
+					styleClass="ui-g-8" />
+			</div>
+
+			<div class="ui-g-12" style="display: flex; justify-content: center;">
+				<h:outputLabel for="telefones" value="Telefones" styleClass="ui-g-4" />
+				<div class="ui-g ui-g-8"
+					style="padding: 0; display: flex; justify-content: space-between;">
+					<h:panelGroup styleClass="ui-g-12">
+						<p:orderList id="telefones-order-list"
+							value="#{detalhesUsuarioMB.usuario.telefones}" var="telefone"
+							responsive="true" itemValue="#{telefone}" controlsLocation="none">
+							<p:column>
+								<h:outputText value="#{telefone}" />
+							</p:column>
+						</p:orderList>
+					</h:panelGroup>
+				</div>
+			</div>
+
+			<h:form>
+				<div class="ui-g-6" style="display: flex; justify-content: center;">
+					<p:commandButton value="Editar Usuário" ajax="false"
+						action="/editar" styleClass="ui-g-12" />
+				</div>
+
+				<div class="ui-g-6" style="display: flex; justify-content: center;">
+					<p:commandButton value="Deletar Usuário" ajax="false"
+						action="#{detalhesUsuarioMB.deletarUsuario()}"
+						styleClass="ui-g-12" />
+				</div>
+
+				<div class="ui-g-6" style="display: flex; justify-content: center;">
+					<p:commandButton value="Logout" ajax="false"
+						action="#{detalhesUsuarioMB.logout()}" styleClass="ui-g-12" />
+				</div>
+			</h:form>
+		</div>
+	</div>
+</body>
+</html>
